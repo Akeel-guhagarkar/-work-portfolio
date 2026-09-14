@@ -1,0 +1,90 @@
+/* Fluid Typography Scale & Editorial Rules */
+body {
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+/* Fluid Display Title for Name: AKEEL GUHAGARKAR */
+.text-display-large {
+  font-size: clamp(2.25rem, 5vw + 0.75rem, 4.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.text-intro-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.text-intro-label::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  background-color: var(--accent-blue);
+}
+
+.text-role-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.text-section-title {
+  font-size: clamp(1.375rem, 2.5vw + 0.5rem, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.text-card-title {
+  font-size: clamp(1.125rem, 1.8vw + 0.5rem, 1.625rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.text-body-lead {
+  font-size: clamp(1rem, 1.2vw + 0.25rem, 1.125rem);
+  line-height: 1.65;
+  color: var(--text-body);
+}
+
+.text-caption {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.text-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}

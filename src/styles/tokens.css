@@ -1,0 +1,56 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   DESIGN TOKEN SYSTEM — LUXURY EDITORIAL & WebGL LANDING FOUNDATION
+   Phase 1 Architectural Tokens
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Color Palette ── */
+  --landing-bg-primary: #05070A;
+  --landing-bg-secondary: #080B10;
+  --landing-bg-surface: #0D1117;
+  
+  --landing-text-primary: #FFFFFF;
+  --landing-text-secondary: #A7AFBA;
+  --landing-text-muted: #6F7885;
+  
+  --landing-accent: #4DA3FF;
+  --landing-accent-glow: rgba(77, 163, 255, 0.15);
+  --landing-border-subtle: rgba(255, 255, 255, 0.10);
+  --landing-surface-subtle: rgba(255, 255, 255, 0.03);
+
+  /* ── Typography System ── */
+  --font-landing-sans: 'Inter', 'Plus Jakarta Sans', 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-landing-mono: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
+
+  /* Fluid Responsive Typography Scale */
+  --text-display: clamp(2.75rem, 8vw, 8.5rem);
+  --text-h1: clamp(2.25rem, 5vw, 5rem);
+  --text-h2: clamp(1.5rem, 3.5vw, 3rem);
+  --text-h3: clamp(1.125rem, 2vw, 1.75rem);
+  --text-body: clamp(0.95rem, 1.2vw, 1.125rem);
+  --text-small: clamp(0.75rem, 0.9vw, 0.875rem);
+  --text-micro: 0.6875rem;
+
+  /* ── Spacing System ── */
+  --space-xs: 0.5rem;      /* 8px */
+  --space-sm: 1rem;        /* 16px */
+  --space-md: 1.5rem;      /* 24px */
+  --space-lg: 2.5rem;      /* 40px */
+  --space-xl: 4rem;        /* 64px */
+  --space-2xl: 6rem;       /* 96px */
+  --space-3xl: 9rem;       /* 144px */
+
+  /* ── Layer Hierarchy (Z-Index) ── */
+  --layer-bg: 0;
+  --layer-canvas: 1;
+  --layer-atmosphere: 2;
+  --layer-typography: 3;
+  --layer-ui: 4;
+  --layer-cursor: 5;
+
+  /* ── Transitions & Motion Standards ── */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 0.2s;
+  --duration-medium: 0.4s;
+  --duration-slow: 0.8s;
+}

@@ -1,0 +1,426 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   LANDING EXPERIENCE STYLESHEET — LUXURY EDITORIAL FOUNDATION
+   Phase 4 Cinematic Transition & Portfolio Bridge Styling
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@import './tokens.css';
+
+/* ── Outer Landing Container ── */
+.landing-experience-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  background-color: var(--landing-bg-primary);
+  color: var(--landing-text-primary);
+  font-family: var(--font-landing-sans);
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity var(--duration-slow) var(--ease-editorial), visibility var(--duration-slow) var(--ease-editorial);
+}
+
+.landing-experience-container.landing-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Phase 4 Portfolio Reveal Bridge ── */
+.portfolio-content-wrapper {
+  opacity: 1;
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), transform 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.portfolio-content-wrapper.portfolio-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(60px);
+}
+
+.portfolio-content-wrapper.portfolio-revealed {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ── WebGL Canvas Container Layer ── */
+.landing-canvas-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--layer-atmosphere); /* Elevate canvas layer so 3D sculpture is front & center */
+  pointer-events: none;
+}
+
+.landing-canvas-element {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Layer 2: Atmosphere, Spotlight & Depth Overlay ── */
+.landing-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: var(--layer-bg);
+  pointer-events: none;
+}
+
+.landing-spotlight-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--layer-bg);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.landing-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 75%);
+}
+
+.landing-radial-depth {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(77, 163, 255, 0.12) 0%,
+    rgba(8, 11, 16, 0.25) 50%,
+    rgba(5, 7, 10, 0.5) 100%
+  );
+}
+
+.landing-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Level 1: Desktop Physical Custom Cursor ── */
+.custom-cursor-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  background-color: var(--landing-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--landing-accent);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  margin-left: -18px;
+  border: 1px solid rgba(77, 163, 255, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  will-change: transform;
+}
+
+.cursor-ring-active {
+  border-color: rgba(77, 163, 255, 0.9);
+  background: rgba(77, 163, 255, 0.08);
+  box-shadow: 0 0 20px rgba(77, 163, 255, 0.25);
+}
+
+/* ── Layer 4: Minimal Header ── */
+.landing-header {
+  position: relative;
+  z-index: var(--layer-ui);
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.landing-header-left,
+.landing-header-right {
+  font-family: var(--font-landing-mono);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--landing-text-muted);
+  text-transform: uppercase;
+}
+
+.landing-header-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--landing-accent);
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 8px var(--landing-accent);
+}
+
+/* ── Layer 3: Central Content Typography ── */
+.landing-content {
+  position: relative;
+  z-index: var(--layer-typography);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.landing-brand-name {
+  font-family: var(--font-landing-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.28em;
+  color: var(--landing-text-secondary);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+  opacity: 0.9;
+}
+
+.landing-hero-statement {
+  font-family: var(--font-landing-sans);
+  font-size: var(--text-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--landing-text-primary);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-md) 0;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.85);
+}
+
+.statement-line {
+  display: inline-block;
+}
+
+.statement-accent {
+  background: linear-gradient(135deg, #FFFFFF 0%, #A7AFBA 55%, var(--landing-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.landing-roles-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-landing-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.14em;
+  color: var(--landing-text-secondary);
+  text-transform: uppercase;
+  margin-top: var(--space-xs);
+}
+
+.role-separator {
+  color: var(--landing-border-subtle);
+}
+
+/* ── Layer 5: CTA Action Bar & Magnetic Proximity ── */
+.landing-cta-container {
+  position: relative;
+  z-index: var(--layer-ui);
+  width: 100%;
+  padding: var(--space-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.landing-cta-button {
+  background: var(--landing-surface-subtle);
+  border: 1px solid var(--landing-border-subtle);
+  color: var(--landing-text-primary);
+  font-family: var(--font-landing-mono);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  outline: none;
+  will-change: transform;
+}
+
+.cta-text {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-editorial);
+}
+
+.cta-arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-editorial);
+}
+
+.landing-cta-button:hover .cta-text {
+  transform: translateX(2px);
+}
+
+.landing-cta-button:hover .cta-arrow {
+  transform: translateX(6px);
+}
+
+.landing-cta-button:hover,
+.landing-cta-button:focus-visible {
+  background: rgba(77, 163, 255, 0.14);
+  border-color: var(--landing-accent);
+  color: #FFFFFF;
+  box-shadow: 0 0 35px var(--landing-accent-glow), 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+.landing-cta-button:focus-visible {
+  outline: 2px solid var(--landing-accent);
+  outline-offset: 4px;
+}
+
+/* ── Phase 2 Entrance Animation Stagger Reveal Timeline ── */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(8px);
+  transition: 
+    opacity 1.1s var(--ease-editorial),
+    transform 1.1s var(--ease-editorial),
+    filter 1.1s var(--ease-editorial);
+  will-change: opacity, transform, filter;
+}
+
+.landing-revealed .reveal-element {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.delay-meta        { transition-delay: 0.2s; }
+.delay-name        { transition-delay: 0.6s; }
+.delay-headline-1  { transition-delay: 0.9s; }
+.delay-headline-2  { transition-delay: 1.2s; }
+.delay-roles       { transition-delay: 1.5s; }
+.delay-cta         { transition-delay: 1.8s; }
+
+/* ── Re-entry Floating Trigger (For returning to landing screen) ── */
+.landing-reentry-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: rgba(13, 17, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--landing-text-secondary);
+  font-family: var(--font-landing-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.12em;
+  padding: 8px 14px;
+  border-radius: 99px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.landing-reentry-trigger:hover {
+  background: var(--landing-bg-surface);
+  border-color: var(--landing-accent);
+  color: #FFFFFF;
+}
+
+/* ── Responsive Breakpoint Optimizations ── */
+@media (max-width: 768px) {
+  .landing-header {
+    padding: var(--space-sm) var(--space-md);
+  }
+  .landing-content {
+    padding: 0 var(--space-md);
+  }
+  .landing-roles-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.7rem;
+  }
+  .role-separator {
+    display: none;
+  }
+  .landing-roles-bar span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .landing-cta-button {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-brand-name {
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+  }
+  .landing-header-right {
+    display: none;
+  }
+}
+
+/* ── Reduced Motion Accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  .landing-experience-container,
+  .landing-cta-button,
+  .cta-arrow,
+  .reveal-element,
+  .custom-cursor-container,
+  .landing-spotlight-layer,
+  .portfolio-content-wrapper {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}

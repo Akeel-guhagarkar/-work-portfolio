@@ -1,0 +1,7 @@
+.cursor-spotlight-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 300ms ease;
+}

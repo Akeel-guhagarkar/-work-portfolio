@@ -1,0 +1,42 @@
+.featured-work-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+}
+
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ── Cinematic Portal Transition Overlay ─────────────────────────────────── */
+.transition-portal-overlay {
+  position: fixed;
+  /* Center origin */
+  top: 50%;
+  left: 50%;
+  /*
+   * 200vmax × 200vmax means the circle is always larger than the viewport
+   * in any orientation. When scale(0.01) → scale(1) it fully covers screen.
+   */
+  width: 200vmax;
+  height: 200vmax;
+  margin-top: -100vmax;
+  margin-left: -100vmax;
+  border-radius: 50%;
+  z-index: 9998;
+  pointer-events: none;
+  /* Deep cinematic dark matching landing page */
+  background: radial-gradient(
+    circle at center,
+    #0f1923 0%,
+    #080d14 40%,
+    #040709 80%,
+    #000000 100%
+  );
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+

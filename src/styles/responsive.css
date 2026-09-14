@@ -1,0 +1,179 @@
+/* Complete Multi-Device Breakpoint & Responsive System */
+
+/* Prevent any horizontal overflow at page root */
+html, body, .app-container {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* 1. Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+  .profile-layout-container {
+    padding: var(--space-2xl) var(--space-2xl);
+  }
+
+  .profile-grid {
+    gap: var(--space-3xl);
+  }
+}
+
+/* 2. Standard Desktop / Laptop (1024px to 1399px) */
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .profile-grid {
+    gap: var(--space-xl);
+  }
+
+  .content-column-wrapper {
+    padding-left: var(--space-md);
+  }
+}
+
+/* 3. Tablet Landscape (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .profile-layout-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .profile-grid {
+    flex-direction: row;
+    gap: var(--space-lg);
+  }
+
+  .portrait-column-wrapper {
+    width: 42%;
+    position: sticky;
+    top: var(--space-lg);
+  }
+
+  .content-column-wrapper {
+    width: 58%;
+    padding-left: 0;
+    gap: var(--space-xl);
+  }
+}
+
+/* 4. Tablet Portrait (600px to 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+  .profile-layout-container {
+    padding: var(--space-md) var(--space-md);
+  }
+
+  .profile-grid {
+    flex-direction: column;
+    gap: var(--space-xl);
+    min-height: auto;
+  }
+
+  .portrait-column-wrapper {
+    width: 100%;
+    position: static;
+  }
+
+  .portrait-image-frame {
+    aspect-ratio: 16 / 10;
+  }
+
+  .portrait-image {
+    object-position: center 20%;
+  }
+
+  .content-column-wrapper {
+    width: 100%;
+    padding-left: 0;
+    gap: var(--space-xl);
+  }
+}
+
+/* 5. Mobile Devices (< 600px) */
+@media (max-width: 599px) {
+  .profile-layout-container {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .profile-grid {
+    flex-direction: column;
+    gap: var(--space-lg);
+    min-height: auto;
+  }
+
+  .portrait-column-wrapper {
+    width: 100%;
+    position: static;
+  }
+
+  .portrait-image-frame {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+  }
+
+  .portrait-image {
+    object-position: center 20%;
+  }
+
+  .content-column-wrapper {
+    width: 100%;
+    padding-left: 0;
+    gap: var(--space-lg);
+  }
+
+  .hero-intro-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-roles-bar {
+    padding: 6px 12px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .role-tag {
+    font-size: 0.6875rem;
+  }
+
+  .hero-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: var(--space-sm);
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Single Column Projects Layout on Mobile */
+  .project-showcase-row {
+    flex-direction: column !important;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+  }
+
+  .showcase-preview-column,
+  .showcase-meta-column {
+    width: 100% !important;
+  }
+}
+
+/* 6. Ultra-Small Mobile Devices (< 360px) */
+@media (max-width: 359px) {
+  .profile-layout-container {
+    padding: var(--space-sm) 8px;
+  }
+
+  .portrait-status-badge {
+    padding: 4px 10px;
+  }
+
+  .status-text {
+    font-size: 0.6875rem;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,283 @@
+/* ─── Container ─────────────────────────────────────────────────────────── */
+.portrait-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Glowing Ambient Orb ────────────────────────────────────────────────── */
+.portrait-ambient-orb {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(48px);
+  animation: orbPulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes orbPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* ─── Rotating Gradient Ring ─────────────────────────────────────────────── */
+.portrait-ring-wrapper {
+  position: absolute;
+  inset: -4px;
+  border-radius: calc(var(--radius-lg, 18px) + 4px);
+  z-index: 1;
+  padding: 3px;
+  background: conic-gradient(
+    from 0deg,
+    #10B981,
+    #00D4AA,
+    #34D399,
+    #059669,
+    #10B981
+  );
+  animation: ringRotate 10s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Portrait Card (3D Tilt target) ─────────────────────────────────────── */
+.portrait-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px -12px rgba(0, 82, 255, 0.25),
+    0 0 0 1px rgba(0, 82, 255, 0.12);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+/* ─── Corner Brackets ────────────────────────────────────────────────────── */
+.corner-bracket {
+  position: absolute;
+  z-index: 15;
+  font-family: var(--font-family-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  line-height: 1;
+  animation: bracketBlink 3s ease-in-out infinite;
+}
+
+@keyframes bracketBlink {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1;   }
+}
+
+.corner-bracket.top-left    { top: 12px;    left: 14px;   }
+.corner-bracket.top-right   { top: 12px;    right: 14px;  }
+.corner-bracket.bottom-left { bottom: 56px; left: 14px;   }
+.corner-bracket.bottom-right{ bottom: 56px; right: 14px;  }
+
+/* ─── Image Frame ────────────────────────────────────────────────────────── */
+.portrait-image-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  position: relative;
+  background-color: #0d1525;
+  overflow: hidden;
+}
+
+.portrait-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 900ms ease;
+  filter: contrast(1.05) brightness(1.02) saturate(1.1);
+}
+
+.portrait-card:hover .portrait-image {
+  transform: scale(1.05);
+  filter: contrast(1.08) brightness(1.05) saturate(1.2);
+}
+
+/* ─── Vignette Overlay ───────────────────────────────────────────────────── */
+.portrait-glass-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 19, 43, 0) 40%,
+    rgba(11, 19, 43, 0.8) 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ─── Shimmer Scan-line on Hover ─────────────────────────────────────────── */
+.portrait-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  z-index: 8;
+  pointer-events: none;
+  transition: background-position 0s;
+}
+
+.portrait-card:hover .portrait-shimmer {
+  animation: shimmerScan 0.7s ease forwards;
+}
+
+@keyframes shimmerScan {
+  from { background-position: -100% 0; }
+  to   { background-position: 200% 0;  }
+}
+
+/* ─── Cursive Tagline (inside card, bottom) ──────────────────────────────── */
+.cursive-tagline-bottom {
+  position: absolute;
+  bottom: 16px;
+  left: 18px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  pointer-events: none;
+}
+
+.cursive-text {
+  font-family: 'Caveat', cursive;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.7);
+  line-height: 1;
+  transform: rotate(-2deg);
+  display: block;
+}
+
+.cursive-underline-svg {
+  width: 130px;
+  height: 10px;
+  filter: drop-shadow(0 2px 6px rgba(0, 82, 255, 0.6));
+}
+
+/* ─── Floating Badges ────────────────────────────────────────────────────── */
+.portrait-float-badge {
+  position: absolute;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 82, 255, 0.18);
+  border-radius: 999px;
+  padding: 8px 16px;
+  box-shadow: 0 8px 30px rgba(0, 82, 255, 0.15), 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.badge-label {
+  font-family: var(--font-family-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #0B132B;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  animation: greenPulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.badge-icon {
+  font-size: 0.7rem;
+  color: #0052FF;
+  line-height: 1;
+}
+
+/* Role badge: top-right, floating up */
+.badge-role {
+  top: 18px;
+  right: -16px;
+  animation: floatBadgeA 3.5s ease-in-out infinite;
+}
+
+/* Experience badge: bottom-right, floating down */
+.badge-exp {
+  bottom: 80px;
+  right: -20px;
+  animation: floatBadgeB 4s ease-in-out infinite;
+}
+
+@keyframes floatBadgeA {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-8px);  }
+}
+
+@keyframes floatBadgeB {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(6px); }
+}
+
+@keyframes greenPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(16, 185, 129, 0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(16, 185, 129, 0);   }
+}
+
+/* ─── Entry Animation ────────────────────────────────────────────────────── */
+.animate-reveal-portrait {
+  animation: revealPortrait 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes revealPortrait {
+  from { opacity: 0; transform: translateY(32px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ─── Legacy / Unused (kept for safety) ──────────────────────────────────── */
+.vertical-tag-list { display: none; }
+.tagline-line       { display: none; }
+.vertical-tagline-top { display: none; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .badge-role { right: -8px; }
+  .badge-exp  { right: -8px; }
+  .cursive-text { font-size: 1.8rem; }
+}
+
+@media (max-width: 600px) {
+  .badge-role,
+  .badge-exp { display: none; }
+}

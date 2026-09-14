@@ -1,0 +1,211 @@
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding-top: var(--space-xs);
+  position: relative;
+  width: 100%;
+}
+
+/* Top Category Bar */
+.hero-top-category-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.category-pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bar-sep {
+  color: var(--border-medium);
+  font-weight: 400;
+}
+
+/* Hero Identity Center Block */
+.hero-identity-center {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.hero-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-name-display {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  font-size: clamp(2.5rem, 4.8vw, 3.85rem);
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+/* AKEEL */
+.hero-name-navy {
+  color: #0B132B;
+  display: block;
+  line-height: 0.95;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* GUHAGARKAR */
+.hero-name-blue {
+  color: #0052FF;
+  background: linear-gradient(135deg, #0052FF 0%, #2563EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  line-height: 0.95;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Cursive Accent Callout Centered Directly Below Name — Elegant 6s Breathing Wave Float */
+@keyframes taglineFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+.hero-cursive-callout-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.floating-tagline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  animation: taglineFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite !important;
+  will-change: transform;
+}
+
+.cursive-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sparkle-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  animation: sparkleRotate 6s linear infinite;
+}
+
+@keyframes sparkleRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.cursive-tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 2.35rem;
+  font-weight: 700;
+  color: #7C3AED;
+  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 50%, #6366F1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.05;
+  text-align: center;
+  filter: drop-shadow(0 2px 8px rgba(124, 58, 237, 0.25));
+}
+
+.cursive-underline-hero {
+  width: 220px;
+  height: 14px;
+  filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.45));
+}
+
+.hero-credential-wrapper {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Levitating Floating Web Dev Graphic Badges */
+.hero-floating-badge {
+  position: absolute;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(0, 82, 255, 0.22);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-family-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  box-shadow: 0 6px 20px rgba(0, 82, 255, 0.12);
+  pointer-events: none;
+  transition: all var(--transition-fast);
+}
+
+.badge-left {
+  top: -10px;
+  right: 180px;
+}
+
+.badge-right {
+  top: -10px;
+  right: 0px;
+}
+
+.blue-glow { color: #0052FF; }
+.purple-glow { color: #8B5CF6; }
+
+@keyframes floatLevitate {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.animate-float-slow { animation: floatLevitate 5s ease-in-out infinite; }
+.animate-float-medium { animation: floatLevitate 4s ease-in-out infinite 1s; }
+
+@media (max-width: 900px) {
+  .hero-floating-badge {
+    display: none;
+  }
+  .hero-top-category-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cursive-tagline {
+    font-size: 1.85rem;
+  }
+}
