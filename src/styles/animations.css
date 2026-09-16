@@ -69,17 +69,24 @@
   opacity: 0;
   transform: translateY(32px);
   filter: blur(6px);
+  -webkit-filter: blur(6px);
   transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), 
               transform 800ms cubic-bezier(0.16, 1, 0.3, 1),
-              filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
+              filter 800ms cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-.reveal-on-scroll.is-revealed {
+.reveal-on-scroll.is-revealed,
+.portfolio-revealed .reveal-on-scroll.is-revealed {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
+  -webkit-filter: blur(0);
 }
+
 
 /* Reduced Motion Fallback */
 @media (prefers-reduced-motion: reduce) {

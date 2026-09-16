@@ -13,12 +13,12 @@ export function useCursorPosition() {
   const ringRef = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
-    // Media query & touch detection for desktop fine pointer
+    // Media query & pointer detection for fine pointer devices (desktop & laptops with touchscreens)
     const checkPointer = () => {
-      const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
-      const isTouchDevice =
-        'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      setIsPointerFine(hasFinePointer && !isTouchDevice);
+      const hasFinePointer = window.matchMedia('(pointer: fine)').matches || window.matchMedia('(hover: hover)').matches;
+      // Allow fine pointer on desktop/laptops regardless of touch capability (e.g. Surface / touch laptops)
+      const isMobilePhone = window.innerWidth <= 768 && 'ontouchstart' in window && !window.matchMedia('(pointer: fine)').matches;
+      setIsPointerFine(hasFinePointer && !isMobilePhone);
     };
 
     checkPointer();
@@ -26,9 +26,11 @@ export function useCursorPosition() {
 
     const handleMouseMove = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
+      // Dynamically enable if mouse activity is detected
+      setIsPointerFine((prev) => (prev ? prev : true));
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // Animation loop for physics lerping
     let animId;

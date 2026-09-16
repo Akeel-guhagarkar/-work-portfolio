@@ -49,6 +49,7 @@ export default function FeaturedWork() {
         </div>
         <div className="header-line"></div>
         <span className="header-right-label">WEB SOLUTIONS FOR A BETTER TOMORROW</span>
+        <span className="mobile-swipe-hint">SWIPE ↔</span>
       </div>
 
       {/* 3 Horizontal Cards Grid */}

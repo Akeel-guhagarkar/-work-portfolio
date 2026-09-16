@@ -38,5 +38,10 @@
   );
   will-change: transform, opacity;
   transform-origin: center center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
+
 

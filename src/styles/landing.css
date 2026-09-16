@@ -43,12 +43,14 @@
   opacity: 0;
   pointer-events: none;
   transform: translateY(60px);
+  display: none;
 }
 
 .portfolio-content-wrapper.portfolio-revealed {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  display: block;
 }
 
 /* ── WebGL Canvas Container Layer ── */

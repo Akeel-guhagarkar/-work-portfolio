@@ -59,6 +59,7 @@ export default function CertificatesSection() {
         </div>
         <div className="header-line"></div>
         <span className="header-right-label">IIT DELHI VERIFIED CREDENTIALS</span>
+        <span className="mobile-swipe-hint">SWIPE ↔</span>
       </div>
 
       {/* Grid of 3 Certificates */}

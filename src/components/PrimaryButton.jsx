@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { smoothScrollTo } from '../hooks/useSmoothScroll';
 import './Buttons.css';
 
 export default function PrimaryButton({ label = "VIEW MY WORK", targetId = "featured-work", onClick }) {
@@ -10,10 +11,7 @@ export default function PrimaryButton({ label = "VIEW MY WORK", targetId = "feat
     }
     if (targetId) {
       e.preventDefault();
-      const el = document.getElementById(targetId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+      smoothScrollTo(`#${targetId}`, { offset: -70 });
     }
   };
 

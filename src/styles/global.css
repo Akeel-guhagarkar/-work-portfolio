@@ -14,9 +14,32 @@ section {
   scroll-margin-top: 80px;
 }
 
-html {
-  scroll-behavior: smooth;
+html, body {
   background-color: var(--bg-primary);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Lenis smooth scrolling compatibility */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+/* Completely hide all visual scrollbars across Chrome, Edge, Safari, Opera */
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  display: none !important;
 }
 
 body {
@@ -60,7 +83,7 @@ img {
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) clamp(24px, 4vw, 64px);
   flex: 1;
   display: flex;
   flex-direction: column;

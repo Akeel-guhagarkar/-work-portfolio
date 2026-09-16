@@ -6,9 +6,9 @@ import HeroContent from './components/HeroContent';
 import FeaturedWork from './components/FeaturedWork';
 import CertificatesSection from './components/CertificatesSection';
 import ConnectSection from './components/ConnectSection';
-import ParticleBackground from './components/ParticleBackground';
-import CursorSpotlight from './components/CursorSpotlight';
+import GlobalBackground from './components/GlobalBackground';
 import Footer from './components/Footer';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 
 import './styles/tokens.css';
 import './styles/landing.css';
@@ -22,6 +22,9 @@ export default function App() {
   const [transitionProgress, setTransitionProgress] = useState(0);
   const [overlayPhase, setOverlayPhase] = useState('hidden'); // 'hidden' | 'expanding' | 'full' | 'contracting' | 'done'
   const overlayTimers = useRef([]);
+
+  // Initialize standard-level smooth inertia scrolling when viewing portfolio
+  useSmoothScroll(!showLanding);
 
   const clearAllTimers = () => {
     overlayTimers.current.forEach(clearTimeout);
@@ -49,9 +52,13 @@ export default function App() {
       setShowLanding(false);
       setIsTransitioning(false);
       setTransitionProgress(1);
+      window.dispatchEvent(new CustomEvent('portfolio-revealed'));
     }, 500);
-    // Phase 4 — cleanup after reveal completes
-    const t4 = setTimeout(() => setOverlayPhase('done'), 3000);
+    // Phase 4 — cleanup after reveal completes & trigger fallback reveal check
+    const t4 = setTimeout(() => {
+      setOverlayPhase('done');
+      window.dispatchEvent(new CustomEvent('portfolio-revealed'));
+    }, 1500);
     overlayTimers.current.push(t3, t4);
   };
 
@@ -63,16 +70,28 @@ export default function App() {
     setTransitionProgress(0);
   };
 
+  // Manage body scrollbar lock when landing screen is active vs portfolio
+  useEffect(() => {
+    if (showLanding) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showLanding]);
+
   // Cleanup timers on unmount
   useEffect(() => () => clearAllTimers(), []);
 
   // Overlay scale & opacity maps — iris must reach scale(2) to cover full viewport
   const overlayStyles = {
-    hidden:      { transform: 'scale(0.01)', opacity: 0,   pointerEvents: 'none' },
-    expanding:   { transform: 'scale(2)',    opacity: 1,   pointerEvents: 'all'  },
-    full:        { transform: 'scale(2)',    opacity: 1,   pointerEvents: 'all'  },
-    contracting: { transform: 'scale(0.01)', opacity: 1,   pointerEvents: 'none' },
-    done:        { transform: 'scale(0.01)', opacity: 0,   pointerEvents: 'none' },
+    hidden:      { transform: 'scale(0.01)', opacity: 0,   pointerEvents: 'none', display: 'none' },
+    expanding:   { transform: 'scale(2)',    opacity: 1,   pointerEvents: 'all',  display: 'block' },
+    full:        { transform: 'scale(2)',    opacity: 1,   pointerEvents: 'all',  display: 'block' },
+    contracting: { transform: 'scale(0.01)', opacity: 1,   pointerEvents: 'none', display: 'block' },
+    done:        { transform: 'scale(0.01)', opacity: 0,   pointerEvents: 'none', display: 'none' },
   };
   const currentOverlay = overlayStyles[overlayPhase] || overlayStyles.hidden;
 
@@ -88,6 +107,7 @@ export default function App() {
         className="transition-portal-overlay"
         aria-hidden="true"
         style={{
+          display: currentOverlay.display,
           transform: currentOverlay.transform,
           opacity: currentOverlay.opacity,
           pointerEvents: currentOverlay.pointerEvents,
@@ -132,12 +152,8 @@ export default function App() {
         className={`portfolio-content-wrapper ${!showLanding ? 'portfolio-revealed' : 'portfolio-hidden'}`}
         style={{ pointerEvents: !showLanding ? 'auto' : 'none' }}
       >
-        <div className="bg-texture-layer" aria-hidden="true">
-          <div className="bg-grid-overlay"></div>
-          <div className="bg-radial-overlay"></div>
-          <ParticleBackground />
-          <CursorSpotlight />
-        </div>
+        {/* One Reusable Global Animated Digital Background System */}
+        <GlobalBackground />
 
         {/* Top Glassmorphic Navigation */}
         <Navigation />

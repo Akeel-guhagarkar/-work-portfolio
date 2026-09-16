@@ -83,7 +83,7 @@ export function useLandingTransition(onTransitionComplete, onTransitionStart, on
     [transitionState, startTransition]
   );
 
-  // Gentle scroll awareness trigger
+  // Gentle scroll & touch swipe-up awareness trigger
   useEffect(() => {
     if (transitionState !== 'idle') return;
 
@@ -91,7 +91,7 @@ export function useLandingTransition(onTransitionComplete, onTransitionStart, on
     const handleWheel = (e) => {
       if (e.deltaY > 0) {
         wheelDeltaSum += e.deltaY;
-        if (wheelDeltaSum > 220) {
+        if (wheelDeltaSum > 180) {
           startTransition();
         }
       } else {
@@ -99,8 +99,33 @@ export function useLandingTransition(onTransitionComplete, onTransitionStart, on
       }
     };
 
+    let touchStartY = 0;
+    const handleTouchStart = (e) => {
+      if (e.touches && e.touches[0]) {
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches[0]) {
+        const touchCurrentY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchCurrentY;
+        // Swipe up by 50px or more on mobile/iPhone
+        if (deltaY > 50) {
+          startTransition();
+        }
+      }
+    };
+
     window.addEventListener('wheel', handleWheel, { passive: true });
-    return () => window.removeEventListener('wheel', handleWheel);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
   }, [transitionState, startTransition]);
 
   return {

@@ -1,6 +1,6 @@
 :root {
-  /* Color System — Luxury Editorial Palette */
-  --bg-primary: #FAF9F6;
+  /* Color System — Luxury Editorial Blueprint Palette */
+  --bg-primary: #F4F7FB;
   --bg-surface: #FFFFFF;
   --bg-card: rgba(255, 255, 255, 0.85);
   --bg-card-hover: rgba(255, 255, 255, 0.98);
@@ -48,10 +48,10 @@
   --space-3xl: 64px;
   --space-4xl: 80px;
 
-  /* Layout Boundaries */
-  --container-max-width: 1320px;
-  --portrait-width-pct: 40%;
-  --content-width-pct: 60%;
+  /* Layout Boundaries — Full Screen Edge-to-Edge */
+  --container-max-width: 1720px;
+  --portrait-width-pct: 38%;
+  --content-width-pct: 62%;
 
   /* Glassmorphism & Shadows */
   --glass-bg: rgba(255, 255, 255, 0.75);

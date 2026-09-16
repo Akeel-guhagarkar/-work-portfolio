@@ -2,6 +2,12 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 90;
   transition: opacity 300ms ease;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .cursor-spotlight-layer {
+    display: none !important;
+  }
 }

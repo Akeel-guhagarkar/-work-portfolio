@@ -1,10 +1,11 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
+import { smoothScrollTo } from '../hooks/useSmoothScroll';
 import './Footer.css';
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    smoothScrollTo(0, { duration: 1.5 });
   };
 
   return (

@@ -1,0 +1,147 @@
+.global-background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #F8FAFC;
+  transform: translateZ(0);
+}
+
+/* Top-to-Bottom Animated Blue Light Wave Sweep */
+.global-blue-beam-layer {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(0, 82, 255, 0.015) 35%,
+    rgba(0, 82, 255, 0.07) 50%,
+    rgba(37, 99, 235, 0.02) 65%,
+    transparent 100%
+  );
+  animation: globalBlueScan 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes globalBlueScan {
+  0% {
+    transform: translateY(-35%) rotate(0deg) translateZ(0);
+  }
+  100% {
+    transform: translateY(35%) rotate(4deg) translateZ(0);
+  }
+}
+
+/* Multi-Section Ambient Radial Glow Orbs spanning active screen viewport */
+.global-radial-orbs-layer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 15% 18%, rgba(0, 82, 255, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 85% 22%, rgba(59, 130, 246, 0.13) 0%, transparent 50%),
+    radial-gradient(circle at 20% 60%, rgba(0, 82, 255, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+  animation: ambientLightPulse 12s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+@keyframes ambientLightPulse {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* SVG Network Layer & Nodes */
+.global-svg-network-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.global-network-svg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.global-path-accent {
+  opacity: 0.85;
+}
+
+.path-slow {
+  animation: pathFloatSlow 12s ease-in-out infinite alternate;
+}
+
+.path-medium {
+  animation: pathFloatMedium 9s ease-in-out infinite alternate;
+}
+
+@keyframes pathFloatSlow {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-15px) rotate(1deg); }
+}
+
+@keyframes pathFloatMedium {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(12px) rotate(-1deg); }
+}
+
+/* Pulsing SVG Network Nodes */
+.network-node {
+  fill: #0052FF;
+  filter: drop-shadow(0 0 6px rgba(0, 82, 255, 0.8));
+  animation: nodePulse 5s ease-in-out infinite alternate;
+}
+
+.pulse-delay-1 { animation-delay: 0s; }
+.pulse-delay-2 { animation-delay: 1.2s; }
+.pulse-delay-3 { animation-delay: 2.4s; }
+.pulse-delay-4 { animation-delay: 3.6s; }
+.pulse-delay-5 { animation-delay: 4.8s; }
+
+@keyframes nodePulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 768px) {
+  .global-svg-network-layer {
+    opacity: 0.6;
+  }
+  .global-blue-beam-layer {
+    opacity: 0.7;
+  }
+}

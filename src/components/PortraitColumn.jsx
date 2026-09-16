@@ -38,7 +38,7 @@ export default function PortraitColumn() {
       {/* Glowing ambient orb behind card */}
       <div className="portrait-ambient-orb" />
 
-      {/* Rotating gradient ring */}
+      {/* Original Rotating Gradient Ring Rectangle */}
       <div className="portrait-ring-wrapper">
         <div className="portrait-ring" />
       </div>

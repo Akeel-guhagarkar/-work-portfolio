@@ -3,12 +3,17 @@
   padding: var(--space-xl) var(--space-md);
   margin-top: var(--space-2xl);
   border-top: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  z-index: 1;
 }
 
 .footer-container {
   max-width: var(--container-max-width);
   margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 64px);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -78,6 +83,9 @@
 }
 
 @media (max-width: 768px) {
+  .site-footer {
+    padding-bottom: 80px;
+  }
   .footer-tagline-block {
     flex-wrap: wrap;
     gap: 8px;

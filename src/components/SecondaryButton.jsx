@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { smoothScrollTo } from '../hooks/useSmoothScroll';
 import './Buttons.css';
 
 export default function SecondaryButton({ label = "LET'S CONNECT", targetId = "connect", onClick }) {
@@ -10,10 +11,7 @@ export default function SecondaryButton({ label = "LET'S CONNECT", targetId = "c
     }
     if (targetId) {
       e.preventDefault();
-      const el = document.getElementById(targetId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+      smoothScrollTo(`#${targetId}`, { offset: -70 });
     }
   };
 

@@ -429,6 +429,10 @@
   border: 1px solid #e2e8f0;
 }
 
+.mobile-swipe-hint {
+  display: none !important;
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 990px) {
   .certificates-grid {
@@ -436,9 +440,64 @@
   }
 }
 
-@media (max-width: 640px) {
+/* Tablet & Laptop Grid (601px to 990px) — NO SLIDER */
+@media (min-width: 601px) and (max-width: 990px) {
   .certificates-grid {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Smartphone Only Horizontal Swipe (<= 600px) */
+@media (max-width: 600px) {
+  .header-right-label {
+    display: none;
+  }
+
+  .certificates-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 8px 4px 16px 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .certificates-grid::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .certificate-card {
+    flex: 0 0 84vw;
+    max-width: 320px;
+    min-width: 260px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .mobile-swipe-hint {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-family-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: rgba(0, 82, 255, 0.08);
+    border: 1px solid rgba(0, 82, 255, 0.2);
+    padding: 3px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
   }
 }
 
